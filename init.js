@@ -1,19 +1,19 @@
 /*!
-* Nab mixin for Chocolat
-* Copyright(c) 2014 Dino Paskvan (http://www.dinopaskvan.com)
-* MIT Licensed
-*/
+ * Nab mixin for Chocolat
+ * Copyright(c) 2014 Dino Paskvan (http://www.dinopaskvan.com)
+ * MIT Licensed
+ */
 
 /**
-* Module dependencies.
-*/
+ * Module dependencies.
+ */
 
 var fs = require('fs');
 var exec = require('child_process').exec;
 
 /**
-* Hook up menu items.
-*/
+ * Hook up menu items.
+ */
 
 Hooks.addMenuItem('Actions/Nab/Edit the List', 'control-alt-command-l', function() {
   Document.open(__dirname + '/db.json');
@@ -23,11 +23,11 @@ Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
   var win = new Window();
   var doc = Editor.current();
   var db = JSON.parse(fs.readFileSync(__dirname + '/db.json'));
-  win.htmlPath = 'fetch.html';
-  win.title = "Fetch";
-  win.buttons = ["Fetch", "Cancel"];
+  win.htmlPath = 'nab.html';
+  win.title = "Nab";
+  win.buttons = ["Nab", "Cancel"];
   var contents = '';
-  win.onButtonClick = function (buttonName) {
+  win.onButtonClick = function(buttonName) {
     if (buttonName === "Cancel") {
       win.close();
     } else {
@@ -38,10 +38,10 @@ Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
             exec('curl ' + db[i].url, function(err, stdout, stderr) {
               if (err) throw (err);
               Recipe.runOn(Editor.current(), function(recipe) {
-                  recipe.text = stdout;
+                recipe.text = stdout;
               });
             });
-          break;
+            break;
           } else {
             if (i === db.length - 1) Alert.show('Error', 'No such resource in the database.', ['OK']);
           }
@@ -52,7 +52,12 @@ Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
       }
     }
   }
-  win.frame = {x: 0, y: 0, width: 300, height:60};
+  win.frame = {
+    x: 0
+    , y: 0
+    , width: 300
+    , height: 60
+  };
   win.run();
   win.center();
 });
