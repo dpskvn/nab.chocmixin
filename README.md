@@ -18,6 +18,9 @@ Nab is available in the `Actions` menu of Chocolat. You can also use the shortcu
       ...
     ]
 
+## Installation
+Just clone this repository or download the zip and extract its contents into `~/Library/Application Support/Chocolat/Mixins/nab.chocmixin`
+
 ## Contributions...
 ...are very much welcome. Feel free to fiddle with this and send me a pull request.
 
