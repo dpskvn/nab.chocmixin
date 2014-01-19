@@ -1,0 +1,14 @@
+[
+  {
+    "name": "jquery",
+    "url": "http://code.jquery.com/jquery-2.0.3.min.js"
+  },
+  {
+    "name": "typeplate",
+    "url": "https://raw.github.com/typeplate/typeplate.github.io/master/typeplate/css/typeplate.css"
+  },
+  {
+    "name": "normalize",
+    "url": "http://necolas.github.io/normalize.css/2.1.3/normalize.css"
+  }
+]
