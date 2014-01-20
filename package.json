@@ -1,0 +1,27 @@
+{
+  "name": "nab.chocmixin",
+  "version": "0.2.0",
+  "description": "A remote-file-fetching mixin for Chocolat",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DinoPaskvan/nab.chocmixin.git"
+  },
+  "keywords": [
+    "chocolat",
+    "remote",
+    "remote",
+    "file",
+    "fetch",
+    "mixin"
+  ],
+  "author": "Dino Paskvan (http://www.dinopaskvan.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DinoPaskvan/nab.chocmixin/issues"
+  },
+  "homepage": "https://github.com/DinoPaskvan/nab.chocmixin"
+}
