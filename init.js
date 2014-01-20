@@ -12,21 +12,25 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 
 /**
+ * Database location.
+ */
+
+var dbFile = __dirname + '/db.json';
+
+/**
  * Hook up menu items.
  */
 
 Hooks.addMenuItem('Actions/Nab/Edit the List', 'control-alt-command-l', function() {
-  Document.open(__dirname + '/db.json');
+  Document.open(dbFile);
 });
 
 Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
   var win = new Window();
-  var doc = Editor.current();
-  var db = JSON.parse(fs.readFileSync(__dirname + '/db.json'));
+  var db = JSON.parse(fs.readFileSync(dbFile));
   win.htmlPath = 'nab.html';
   win.title = "Nab";
   win.buttons = ["Nab", "Cancel"];
-  var contents = '';
   win.onButtonClick = function(buttonName) {
     if (buttonName === "Cancel") {
       win.close();
@@ -49,6 +53,7 @@ Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
         win.close();
       } else {
         Alert.show('Error', 'No open file to nab into.', ['OK']);
+        win.close();
       }
     }
   }

@@ -10,5 +10,9 @@
   {
     "name": "normalize",
     "url": "http://necolas.github.io/normalize.css/2.1.3/normalize.css"
+  },
+  {
+    "name": "bootstrap",
+    "url": "http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
   }
 ]
