@@ -26,17 +26,35 @@ Hooks.addMenuItem('Actions/Nab/Edit the List', 'control-alt-command-l', function
 });
 
 Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
-  var win = new Window();
-  var db = JSON.parse(fs.readFileSync(dbFile));
-  win.htmlPath = 'nab.html';
-  win.title = "Nab";
-  win.buttons = ["Nab", "Cancel"];
-  win.onButtonClick = function(buttonName) {
-    if (buttonName === "Cancel") {
-      win.close();
-    } else {
-      var name = win.evalExpr('document.getElementById("name").value');
-      if (Editor.current()) {
+  var sheet = new Sheet(MainWindow.current());
+  //var db = JSON.parse(fs.readFileSync(dbFile));
+  sheet.htmlPath = 'nab.html';
+  sheet.title = "Nab";
+  sheet.buttons = ["Cancel"];
+  
+  sheet.onLoad = function() {
+    sheet.applyFunction(function(data) {
+      window.nameKeyPress = function(e) {
+        if (e.keyCode == 13) {
+          chocolat.sendMessage(document.getElementById('name').value, []);
+        } else if (e.keyCode == 27) {
+          chocolat.sendMessage('close', []);
+        }
+      };
+      document.getElementById('name').focus();
+    }, []);
+  };
+  
+  /**
+   * Retrieve item from the database
+   * @param {String} name The name of the item to fetch
+   * @param {String} dbFile Path to the JSON database
+   */
+    
+  var getFromDB = function(name, dbFile) {
+    if (Editor.current()) {
+      fs.readFile(dbFile, function(err, data){
+        var db = JSON.parse(data);
         for (var i = 0; i < db.length; i++) {
           if (db[i].name === name) {
             exec('curl ' + db[i].url, function(err, stdout, stderr) {
@@ -50,19 +68,35 @@ Hooks.addMenuItem('Actions/Nab/Nab', 'control-alt-command-n', function() {
             if (i === db.length - 1) Alert.show('Error', 'No such resource in the database.', ['OK']);
           }
         }
-        win.close();
-      } else {
-        Alert.show('Error', 'No open file to nab into.', ['OK']);
-        win.close();
-      }
+        sheet.close();
+
+      });
+    } else {
+      Alert.show('Error', 'No open file to nab into.', ['OK']);
+      sheet.close();
     }
   }
-  win.frame = {
-    x: 0
-    , y: 0
-    , width: 300
-    , height: 60
+  
+  sheet.onMessage = function(name) {
+    if (name !== 'close') {
+      getFromDB(name, dbFile);
+    } else {
+      sheet.close();
+    }
   };
-  win.run();
-  win.center();
+  
+  sheet.onButtonClick = function(buttonName) {
+    if (buttonName === "Cancel") {
+      sheet.close();
+    }
+  }
+  
+  sheet.frame = {
+    x: 0
+  , y: 0
+  , width: 300
+  , height: 60
+  };
+  
+  sheet.run();
 });

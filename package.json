@@ -1,6 +1,6 @@
 {
   "name": "nab.chocmixin",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "description": "A remote-file-fetching mixin for Chocolat",
   "main": "init.js",
   "scripts": {

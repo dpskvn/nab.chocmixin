@@ -15,12 +15,6 @@
     </style>
 </head>
 <body>
-    <input type="text" name="name" id="name" placeholder="Enter resource name" />
-    <script>
-        window.onload = function() {
-          var input = document.getElementById("name");
-          input.focus();
-        }
-    </script>
+    <input type="text" name="name" id="name" onkeypress="nameKeyPress(event)" placeholder="Enter resource name and hit return" />
 </body>
 </html>
