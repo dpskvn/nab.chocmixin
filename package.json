@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DinoPaskvan/nab.chocmixin.git"
+    "url": "git://github.com/dpskvn/nab.chocmixin.git"
   },
   "keywords": [
     "chocolat",
@@ -21,7 +21,7 @@
   "author": "Dino Paskvan (http://www.dinopaskvan.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DinoPaskvan/nab.chocmixin/issues"
+    "url": "https://github.com/dpskvn/nab.chocmixin/issues"
   },
-  "homepage": "https://github.com/DinoPaskvan/nab.chocmixin"
+  "homepage": "https://github.com/dpskvn/nab.chocmixin"
 }
